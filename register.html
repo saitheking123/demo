@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <form action="/register" method="POST">
+        <h1>Register</h1>
+        <input type="text" id="username" name="username" placeholder="Create Username" required>
+        <input type="password" id="password" name="password" placeholder="Create Password" required>
+        <button type="submit">Register</button>
+        <a href="/login">Already have an account? Login here.</a>
+    </form>
+</body>
+</html>

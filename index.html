@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="store-name">My Food Store</div>
+        <div>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <a href="/cart">Cart</a>
+        </div>
+    </div>
+
+    <!-- Food Service Section -->
+    <h1 style="text-align: center; margin: 20px;">Food Service</h1>
+    <table>
+        <tr>
+            <th>Product Image</th>
+            <th>Product Name</th>
+            <th>Price (₹)</th>
+            <th>Quantity</th>
+            <th>Add to Cart</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>
+                <div class="product-image-box">
+                    <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+                </div>
+            </td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+                <form action="/add-to-cart" method="POST">
+                    <input type="hidden" name="product_name" value="{{ product.name }}">
+                    <input type="hidden" name="price" value="{{ product.price }}">
+                    <input type="number" name="quantity" min="1" value="1" required>
+            </td>
+            <td>
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </td>
+        </tr>
+        
+        {% endfor %}
+    </table>
+    <a href="/cart">View Cart</a>
+</body>
+</html>
